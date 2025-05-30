@@ -7,7 +7,7 @@
  */
 class Api
 {
-	private array $data;
+    private array $data;
 
     public function __construct(array $data)
     {
@@ -120,13 +120,21 @@ $api_path_templates =
 $api = new Api($user);
 $apiTest = new ApiTest($api);
 
-$apiTest->test_get_api_path();
-
-$api_paths = array_map(function ($api_path_template) use ($api)
+// Запускаем тест перед выполнением
+if ($apiTest->test_get_api_path()) 
 {
+    $api_paths = array_map(function ($api_path_template) use ($api)
+    {
 	return $api->get_api_path($api_path_template);
-}, $api_path_templates);
+    }, $api_path_templates);
 
-echo json_encode($api_paths, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
+    echo json_encode($api_paths, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
+}
+else 
+{
+    echo 'Tests wasn't passed. Code can't be execution';
+}
+
+
 
 
