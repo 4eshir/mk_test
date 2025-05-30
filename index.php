@@ -132,7 +132,7 @@ if ($apiTest->test_get_api_path())
 }
 else 
 {
-    echo 'Tests wasn't passed. Code can't be execution';
+    echo 'Tests wasn\'t passed. Code can\'t be execution';
 }
 
 
