@@ -14,29 +14,29 @@ class Api
         $this->data = $data;
     }
 	
-	/**
-	 * Заполняет строковый шаблон template данными из объекта object
-	 *
-	 * @author		User Name
-	 * @version		v.1.0 (dd/mm/yyyy)
-	 * @param		string $template
-	 * @return		string
-	 */
-	public function get_api_path(string $template): string
+    /**
+    * Заполняет строковый шаблон template данными из объекта object
+    *
+    * @author		User Name
+    * @version		v.1.0 (dd/mm/yyyy)
+    * @param		string $template
+    * @return		string
+    */
+    public function get_api_path(string $template): string
     {
         return preg_replace_callback('/%(\w+)%/', function ($matches) {
             return $this->inject_data($matches[1]);
         }, $template);
     }
 
-	/**
-	 * Метод внедрения конкретного значения в строку (url)
-	 *
-	 * @author		User Name
-	 * @version		v.1.0 (dd/mm/yyyy)
-	 * @param		string $key
-	 * @return		string
-	 */
+    /**
+    * Метод внедрения конкретного значения в строку (url)
+    *
+    * @author		User Name
+    * @version		v.1.0 (dd/mm/yyyy)
+    * @param		string $key
+    * @return		string
+    */
     private function inject_data(string $key): string
     {
         if (isset($this->data[$key])) {
